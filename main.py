@@ -25,7 +25,7 @@ a=input().split()
 if a[0]=="随便膜":
   for i in range(0, int(a[1])):
     print("%%%"+random.choice(userlist))
-elif a[0]=="播报现在时间":
+elif a[0]=="播报现在时间" or a[0]=="几点了":
   print("现在是："+datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 elif a[0]=="全部给我膜拜":
     if len(a)>=1:
@@ -60,11 +60,16 @@ elif a[0]=="计算":
   print("Result: "+str(eval(a[1])))
 elif a[0]=="喊一下":
   if a[1]=="所有人":
+    said=""
     for user in userlist:
-      print(userDict[user]+" 有人请你喝茶[CQ:emoji,id=127861]")
-  elif a[1] in userlist:
-    print(userDict[a[1]]+" 有人请你喝茶[CQ:emoji,id=127861]")
+      said=said+userDict[user]+" "
   else:
-    print(a[1]+" 有人请你喝茶[CQ:emoji,id=127861]")
+    said=""
+    for i in range(1, len(a)):
+      if a[i] in userlist:
+        said=said+userDict[a[i]]+" "
+      else:
+        said=said+a[i]+" "
+  print(said+" 有人请你喝茶[CQ:face,id=60]")
 else:
   print("不知道你是什么意思欸")
