@@ -54,22 +54,29 @@ elif a[0]=="给我说":
     if a[i] in userlist:
       a[i] = userDict[a[i]]
     said=said+a[i]+" "
+  if a[1]=="不停":
+    a[1]=1000
+    said=a[2]+" "+said
   for i in range(0, int(a[1])):
     print(said)
 elif a[0]=="计算":
   print("Result: "+str(eval(a[1])))
-elif a[0]=="喊一下":
+elif a[0]=="喊一下" or a[0]=="喊":
   if a[1]=="所有人":
     said=""
     for user in userlist:
       said=said+userDict[user]+" "
   else:
     said=""
-    for i in range(1, len(a)):
+    for i in range(1, len(a)-1):
       if a[i] in userlist:
         said=said+userDict[a[i]]+" "
       else:
         said=said+a[i]+" "
-  print(said+" 有人请你喝茶[CQ:face,id=60]")
+  if a[len(a)-1] in userlist:
+    said=said+userDict[a[len(a)-1]]
+    print(said+" 有人请你喝茶[CQ:face,id=60]")
+  else:
+    print(said+" "+a[len(a)-1])
 else:
   print("不知道你是什么意思欸")
